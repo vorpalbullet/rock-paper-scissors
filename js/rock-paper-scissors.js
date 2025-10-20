@@ -21,13 +21,46 @@ function getHumanChoice() {
 }
 
 // function play game
+
 //     declare human score variable with value 0
 //     declare computer score variable with value 0
+let humanScore = 0;
+let computerScore = 0;
 
 //     function play a round (computer choice, player choice)
-//         compare choices and determine winner
-//         increment winners score
-//         display round result message (eg. "You lose the round! Paper beats Rock")
+function playRound(humanChoice, computerChoice) {
+  // capitalize choices for display
+  humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
+  computerChoice =
+    computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+
+  // compare choices and determine winner
+  if (humanChoice == computerChoice) {
+    console.log(`It's a tie! You both picked ${humanChoice}. No one wins!`);
+    return;
+  }
+
+  let win = false;
+
+  if (humanChoice == "rock") {
+    win = computerChoice == "scissors";
+  } else if (humanChoice == "paper") {
+    win = computerChoice == "rock";
+  } else {
+    // humanChoice == "scissors"
+    win = computerChoice == "paper";
+  }
+
+  // increment winners score
+  // display round result message (eg. "You lose the round! Paper beats Rock")
+  if (win) {
+    humanScore++;
+    console.log(`You win the round! ${humanChoice} beats ${computerChoice}`);
+  } else {
+    computerScore++;
+    console.log(`You lose the round! ${computerChoice} beats ${humanChoice}`);
+  }
+}
 
 //     loop 5 times
 //         get players choice
