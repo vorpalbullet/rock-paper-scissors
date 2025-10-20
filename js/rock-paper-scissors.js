@@ -4,11 +4,20 @@ function getComputerChoice() {
 }
 
 // function get players choice
-function getPlayerChoice() {
-  // prompt player for choice
-  // make choice lowercase
+function getHumanChoice() {
+  let choice = "";
+
   // if choice invalid, prompt again till valid
+  while (!["rock", "paper", "scissors"].includes(choice)) {
+    // prompt player for choice
+    choice = prompt("Enter your choice (rock, paper, or scissors):", "");
+
+    // make choice lowercase
+    choice = choice.toLowerCase();
+  }
+
   // return players choice
+  return choice;
 }
 
 // function play game
