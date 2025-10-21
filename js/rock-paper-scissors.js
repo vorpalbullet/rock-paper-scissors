@@ -7,14 +7,14 @@ function getComputerChoice() {
 function getHumanChoice() {
   let choice = "";
 
-  // if choice invalid, prompt again till valid
-  while (!["rock", "paper", "scissors"].includes(choice)) {
+  do {
     // prompt player for choice
     choice = prompt("Enter your choice (rock, paper, or scissors):", "");
 
     // make choice lowercase
     choice = choice.toLowerCase();
-  }
+    // if choice invalid, prompt again till valid
+  } while (!["rock", "paper", "scissors"].includes(choice));
 
   // return players choice
   return choice;
@@ -22,21 +22,16 @@ function getHumanChoice() {
 
 // function play game
 
-//     declare human score variable with value 0
-//     declare computer score variable with value 0
+// declare human score variable with value 0
+// declare computer score variable with value 0
 let humanScore = 0;
 let computerScore = 0;
 
-//     function play a round (computer choice, player choice)
+// function play a round (computer choice, player choice)
 function playRound(humanChoice, computerChoice) {
-  // capitalize choices for display
-  humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
-  computerChoice =
-    computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-
   // compare choices and determine winner
   if (humanChoice == computerChoice) {
-    console.log(`It's a tie! You both picked ${humanChoice}. No one wins!`);
+    console.log(`It's a tie! No one wins!`);
     return;
   }
 
@@ -50,6 +45,11 @@ function playRound(humanChoice, computerChoice) {
     // humanChoice == "scissors"
     win = computerChoice == "paper";
   }
+
+  // capitalize choices for display
+  humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
+  computerChoice =
+    computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
 
   // increment winners score
   // display round result message (eg. "You lose the round! Paper beats Rock")
