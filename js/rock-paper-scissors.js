@@ -72,7 +72,7 @@ function displayGameResult(humanScore, computerScore) {
 
   console.log(
     `You ${humanScore > computerScore ? "win" : "lose"} the game!` +
-      ` Final score: ${humanScore} wins, ${computerScore} losses.`
+      ` Final score - You: ${humanScore}, Computer: ${computerScore}.`
   );
 
 }
