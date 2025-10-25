@@ -23,11 +23,9 @@ function getHumanChoice() {
 function getRoundResult(humanChoice, computerChoice) {
   if (humanChoice == computerChoice) return "tie";
 
-  if (humanChoice == "rock") {
-    if (computerChoice == "scissors") return "win";
-  } else if (humanChoice == "paper") {
-    if (computerChoice == "rock") return "win";
-  } else if (computerChoice == "paper") return "win";
+  if (humanChoice == "rock" && computerChoice == "scissors") return "win";
+  if (humanChoice == "paper" && computerChoice == "rock") return "win";
+  if (humanChoice == "scissors" && computerChoice == "paper") return "win";
 
   return "loss";
 }
