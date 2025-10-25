@@ -23,11 +23,11 @@ function getHumanChoice() {
  * @returns "win" | "loss" | "tie"
  */
 function getRoundResult(humanChoice, computerChoice) {
-  if (humanChoice == computerChoice) return "tie";
+  if (humanChoice === computerChoice) return "tie";
 
-  if (humanChoice == "rock" && computerChoice == "scissors") return "win";
-  if (humanChoice == "paper" && computerChoice == "rock") return "win";
-  if (humanChoice == "scissors" && computerChoice == "paper") return "win";
+  if (humanChoice === "rock" && computerChoice === "scissors") return "win";
+  if (humanChoice === "paper" && computerChoice === "rock") return "win";
+  if (humanChoice === "scissors" && computerChoice === "paper") return "win";
 
   return "loss";
 }
@@ -35,7 +35,7 @@ function getRoundResult(humanChoice, computerChoice) {
 function displayRoundResult(roundResult, humanChoice, computerChoice) {
   let message = "";
 
-  if (roundResult == "tie") {
+  if (roundResult === "tie") {
     message = "It's a tie! No one wins!";
   } else {
     // capitalize choices for display
@@ -44,8 +44,8 @@ function displayRoundResult(roundResult, humanChoice, computerChoice) {
       computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
 
     message = `You ${roundResult} the round! `;
-    message += `${roundResult == "win" ? humanChoice : computerChoice} beats `;
-    message += `${roundResult == "win" ? computerChoice : humanChoice}.`;
+    message += `${roundResult === "win" ? humanChoice : computerChoice} beats `;
+    message += `${roundResult === "win" ? computerChoice : humanChoice}.`;
   }
 
   console.log(message);
@@ -67,7 +67,7 @@ function playRound() {
 }
 
 function displayGameResult(humanScore, computerScore) {
-  if (humanScore == computerScore) {
+  if (humanScore === computerScore) {
     console.log("The game is a tie!");
     return;
   }
@@ -85,9 +85,9 @@ function playGame() {
 
   for (let i = 0; i < 5; i++) {
     let roundResult = playRound();
-    if (roundResult == "win") {
+    if (roundResult === "win") {
       humanScore++;
-    } else if (roundResult == "loss") {
+    } else if (roundResult === "loss") {
       computerScore++;
     }
   }
