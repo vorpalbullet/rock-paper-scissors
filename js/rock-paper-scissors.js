@@ -1,5 +1,7 @@
+const CHOICES = ["rock", "paper", "scissors"];
+
 function getComputerChoice() {
-  return ["rock", "paper", "scissors"].at(Math.floor(Math.random() * 3));
+  return CHOICES.at(Math.floor(Math.random() * 3));
 }
 
 function getHumanChoice() {
@@ -9,7 +11,7 @@ function getHumanChoice() {
     choice = prompt("Enter your choice (rock, paper, or scissors):", "");
 
     choice = choice.toLowerCase();
-  } while (!["rock", "paper", "scissors"].includes(choice));
+  } while (!CHOICES.includes(choice));
 
   return choice;
 }
