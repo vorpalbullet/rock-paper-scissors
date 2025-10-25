@@ -10,7 +10,7 @@ function getHumanChoice() {
   do {
     choice = prompt("Enter your choice (rock, paper, or scissors):", "");
 
-    choice = choice.toLowerCase();
+    choice = choice.trim().toLowerCase();
   } while (!CHOICES.includes(choice));
 
   return choice;
