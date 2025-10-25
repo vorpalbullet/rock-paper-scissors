@@ -16,6 +16,14 @@ function getHumanChoice() {
   return choice;
 }
 
+function isWinningChoice(humanChoice, computerChoice) {
+  return (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  );
+}
+
 /**
  * Determine whether round is a "win", "loss", or "tie"
  * @param {string} humanChoice
@@ -24,11 +32,7 @@ function getHumanChoice() {
  */
 function getRoundResult(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) return "tie";
-
-  if (humanChoice === "rock" && computerChoice === "scissors") return "win";
-  if (humanChoice === "paper" && computerChoice === "rock") return "win";
-  if (humanChoice === "scissors" && computerChoice === "paper") return "win";
-
+  if (isWinningChoice(humanChoice, computerChoice)) return "win";
   return "loss";
 }
 
@@ -76,7 +80,6 @@ function displayGameResult(humanScore, computerScore) {
     `You ${humanScore > computerScore ? "win" : "lose"} the game!` +
       ` Final score - You: ${humanScore}, Computer: ${computerScore}.`
   );
-
 }
 
 function playGame() {
