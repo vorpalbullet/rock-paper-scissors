@@ -57,7 +57,9 @@ function displayRoundResult(roundResult, humanChoice, computerChoice) {
  * @param {string} computerChoice
  * @returns
  */
-function playRound(humanChoice, computerChoice) {
+function playRound() {
+  const humanChoice = getHumanChoice();
+  const computerChoice = getComputerChoice();
   let roundResult = getRoundResult(humanChoice, computerChoice);
 
   displayRoundResult(roundResult, humanChoice, computerChoice);
@@ -82,7 +84,7 @@ function playGame() {
   let computerScore = 0;
 
   for (let i = 0; i < 5; i++) {
-    let roundResult = playRound(getHumanChoice(), getComputerChoice());
+    let roundResult = playRound();
     if (roundResult == "win") {
       humanScore++;
     } else if (roundResult == "loss") {
