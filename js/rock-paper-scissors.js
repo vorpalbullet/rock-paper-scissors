@@ -14,45 +14,57 @@ function getHumanChoice() {
   return choice;
 }
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
+/**
+ * Determine whether round is a "win", "loss", or "tie"
+ * @param {string} humanChoice
+ * @param {string} computerChoice
+ * @returns "win" | "loss" | "tie"
+ */
+function getRoundResult(humanChoice, computerChoice) {
+  if (humanChoice == computerChoice) return "tie";
 
-  function playRound(humanChoice, computerChoice) {
-    if (humanChoice == computerChoice) {
-      console.log(`It's a tie! No one wins!`);
-      return;
-    }
+  if (humanChoice == "rock") {
+    if (computerChoice == "scissors") return "win";
+  } else if (humanChoice == "paper") {
+    if (computerChoice == "rock") return "win";
+  } else if (computerChoice == "paper") return "win";
 
-    let win = false;
+  return "loss";
+}
 
-    if (humanChoice == "rock") {
-      win = computerChoice == "scissors";
-    } else if (humanChoice == "paper") {
-      win = computerChoice == "rock";
-    } else {
-      // humanChoice == "scissors"
-      win = computerChoice == "paper";
-    }
+function displayRoundResult(roundResult, humanChoice, computerChoice) {
+  let message = "";
 
+  if (roundResult == "tie") {
+    message = "It's a tie! No one wins!";
+  } else {
     // capitalize choices for display
     humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
     computerChoice =
       computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
 
-    if (win) {
-      humanScore++;
-      console.log(`You win the round! ${humanChoice} beats ${computerChoice}`);
-    } else {
-      computerScore++;
-      console.log(`You lose the round! ${computerChoice} beats ${humanChoice}`);
-    }
+    message = `You ${roundResult} the round! `;
+    message += `${roundResult == "win" ? humanChoice : computerChoice} beats `;
+    message += `${roundResult == "win" ? computerChoice : humanChoice}.`;
   }
 
-  for (let i = 0; i < 5; i++) {
-    playRound(getHumanChoice(), getComputerChoice());
-  }
+  console.log(message);
+}
 
+/**
+ * Play a round of rock, paper, scissors.
+ * @param {string} humanChoice
+ * @param {string} computerChoice
+ * @returns
+ */
+function playRound(humanChoice, computerChoice) {
+  let roundResult = getRoundResult(humanChoice, computerChoice);
+
+  displayRoundResult(roundResult, humanChoice, computerChoice);
+  return roundResult;
+}
+
+function displayGameResult(humanScore, computerScore) {
   if (humanScore == computerScore) {
     console.log("The game is a tie!");
     return;
@@ -62,6 +74,23 @@ function playGame() {
     `You ${humanScore > computerScore ? "win" : "lose"} the game!` +
       ` Final score: ${humanScore} wins, ${computerScore} losses.`
   );
+
+}
+
+function playGame() {
+  let humanScore = 0;
+  let computerScore = 0;
+
+  for (let i = 0; i < 5; i++) {
+    let roundResult = playRound(getHumanChoice(), getComputerChoice());
+    if (roundResult == "win") {
+      humanScore++;
+    } else if (roundResult == "loss") {
+      computerScore++;
+    }
+  }
+
+  displayGameResult(humanScore, computerScore);
 }
 
 playGame();
