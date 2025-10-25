@@ -71,15 +71,16 @@ function playRound() {
 }
 
 function displayGameResult(humanScore, computerScore) {
+  let message;
   if (humanScore === computerScore) {
-    console.log("The game is a tie!");
-    return;
+    message = "The game is a tie!";
+  } else {
+    message = `You ${humanScore > computerScore ? "win" : "lose"} the game!`;
   }
 
-  console.log(
-    `You ${humanScore > computerScore ? "win" : "lose"} the game!` +
-      ` Final score - You: ${humanScore}, Computer: ${computerScore}.`
-  );
+  message += ` Final score - You: ${humanScore}, Computer: ${computerScore}.`
+
+  console.log(message);
 }
 
 function playGame() {
